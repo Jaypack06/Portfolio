@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Portfolio</title>
+</head>
+<body>
+    <div class="taskbar">
+        <a href="#hero" class="taskbar1">
+            <img src="OIP (1).webp" alt="logo">
+        </a>
+        <a href="#education" class="taskbar2">Education</a>
+        <a href="#projects" class="taskbar3">Projects</a>
+        <a href="#resume" class="taskbar4">Resume</a>
+        <a href="#contact" class="taskbar5">Contact</a>
+    </div>
+
+<section id="hero" class="hero">
+        <div class="hero-left">
+            <span class="hero-badge">Welcome! I'M</span>
+            <h1 class="hero-title">Jayden Packer</h1>
+            <div class="hero-sub">Computer Science student</div>
+            <p class="hero-desc">
+                I'm a passionate computer science student with a knack for problem-solving and a love for coding and network engineering. 
+                Explore my portfolio to see my projects and skills!
+            </p>
+        </div>
+        <div class="hero-right">
+            <img src="IMG_0576-removebg-preview.png" alt="profile" class="hero-img">
+        </div>
+    </section>
+
+<section id="education" class="education">
+        <div class="educationleft">
+            <img class="educationleft-img"src="OIP.webp" alt="school" class="education-img">
+        </div>
+        <div class="educationright">
+            <h2 class="education-title">Education</h2>
+            <div class="education-subtitle">B.S. in Computer Science</div>
+            <div class="education-school">Indiana Institute of Technology</div>
+            <div class="education-dates">2024 - 2028 (Expected Graduation)</div>
+            <p class="education-desc">
+                Will be graduating with a Bachelor's degree in Computer Science with a double minor in Networking and Cybersecurity.
+            </p>
+        </div>
+    </section>
+
+<section id="projects" class="projects">
+    <div class="project-container">
+        <div class="project-box">
+            <img src="project1IMG.jpeg" alt="Project 1" class="project-img">
+            <h3>Home Lab</h3>
+            <p>This a old Cisco router that has it's own subnet that has currently two servers one running Pihole for add blocking and the other is a media server. The servers are those laptops at the top running Ubuntu server.</p>
+        </div>
+        
+        <div class="project-line"></div>
+        
+        <div class="project-box">
+            <img src="project2.jpg" alt="Project 2" class="project-img">
+            <h3>Project Title</h3>
+            <p>Project description goes here. Explain what you built and the technologies used.</p>
+        </div>
+        
+        <div class="project-line"></div>
+        
+        <div class="project-box">
+            <img src="project3.jpg" alt="Project 3" class="project-img">
+            <h3>Project Title</h3>
+            <p>Project description goes here. Explain what you built and the technologies used.</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function(){
+        const bar = document.querySelector('.taskbar');
+        const body = document.body;
+        if (!bar) return;
+
+        let lastScroll = 0;
+        let ticking = false;
+        const threshold = 80;
+
+        function onScroll() {
+            if (ticking) return;
+            ticking = true;
+
+            window.requestAnimationFrame(() => {
+                const currentScroll = window.scrollY || window.pageYOffset;
+                
+                // Scrolling down
+                if (currentScroll > lastScroll && currentScroll > threshold) {
+                    if (!bar.classList.contains('vertical')) {
+                        bar.classList.add('sliding-up');
+                        setTimeout(() => {
+                            bar.classList.remove('sliding-up');
+                            bar.classList.add('vertical');
+                            body.classList.add('shifted'); // Add padding to body
+                        }, 600);
+                    }
+                }
+                // Scrolling up
+                else if (currentScroll < lastScroll && currentScroll < threshold) {
+                    if (bar.classList.contains('vertical')) {
+                        bar.classList.add('sliding-right');
+                        body.classList.remove('shifted'); // Remove padding from body
+                        setTimeout(() => {
+                            bar.classList.remove('sliding-right', 'vertical');
+                        }, 600);
+                    }
+                }
+
+                lastScroll = currentScroll;
+                ticking = false;
+            });
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Update taskbar links */
+.taskbar a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+body {
+    background-color: #110036;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    transition: padding-left 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Add padding when taskbar is vertical */
+body.shifted {
+    padding-left: 88px; /* matches taskbar width */
+}
+
+.taskbar {
+    position: fixed;
+    gap: 48px;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 12px 28px;
+    background: rgba(17,0,54,0.98);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sliding up animation state */
+.taskbar.sliding-up {
+    transform: translateY(-100%);
+}
+
+/* Vertical state with slide-in from left */
+.taskbar.vertical {
+    width: 88px;
+    height: 100vh;
+    padding: 20px 8px;
+    flex-direction: column;
+    gap: 18px;
+    transform: translateX(-100%);
+    animation: slideInLeft 600ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Sliding right animation state */
+.taskbar.sliding-right {
+    width: 88px;
+    height: 100vh;
+    padding: 20px 8px;
+    flex-direction: column;
+    transform: translateX(100%);
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+/* logo adjustments */
+.taskbar1 {
+    width: 64px;
+    justify-self: start;
+    align-self: center;
+    margin-left: 12px;
+    transition: margin 420ms ease;
+    cursor: pointer;
+}
+.taskbar.vertical .taskbar1 {
+    margin-left: 0;
+}
+
+/* logo image sizing */
+.taskbar1 img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+.taskbar.vertical .taskbar1 img {
+    width: 56px;
+    height: 56px;
+}
+
+/* nav items container */
+.taskbar > :not(.taskbar1) {
+    display: flex;
+    gap: 100px;
+    align-items: right;
+}
+
+/* nav items: reset grid positioning when vertical */
+.taskbar2, .taskbar3, .taskbar4, .taskbar5 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    width:max-content;
+    padding: 100px;
+}
+
+.taskbar2:hover,
+.taskbar3:hover,
+.taskbar4:hover,
+.taskbar5:hover {
+    color: #d93b4a;
+}
+
+/* clear grid-column overrides in vertical mode and stack */
+.taskbar.vertical .taskbar2,
+.taskbar.vertical .taskbar3,
+.taskbar.vertical .taskbar4,
+.taskbar.vertical .taskbar5 {
+    /* stack visually and make labels compact */
+    margin: 8px 0;
+    font-size: 13px;
+              /* rotate labels so they read roughly horizontally */
+    transform-origin: center;
+    white-space: nowrap;
+    width: max-content;
+}
+
+/* make contact button smaller and vertical-friendly */
+.taskbar.vertical .taskbar5 {
+    width: 56px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* small visual polish during animation */
+.taskbar, .taskbar * {
+    will-change: transform, width, height, padding, opacity;
+}
+
+/* HERO */
+.hero {
+    /* allow the hero to occupy more horizontal space */
+    max-width: 1400px;
+    width: calc(100% - 160px);
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr 640px; /* larger right column for the image */
+    gap: 60px;
+    align-items: center;
+    padding: 40px 60px;
+}
+
+/* left column (text) */
+.hero-left { color: #fff; padding-right: 16px; }
+.hero-badge {
+    display: inline-block;
+    background: #5b2338;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    line-height: 1;
+    margin: 0 0 8px;
+    color: #fff;
+    letter-spacing: -0.6px;
+}
+.hero-sub {
+    color: #cbbfe6;
+    font-weight: 600;
+    margin-bottom: 18px;
+    font-size: 18px;
+}
+.hero-desc {
+    color: #bfb6d7;
+    max-width: 640px;
+    line-height: 1.7;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* right column (image + decorative shapes) */
+.hero-right {
+    position: relative;
+    height: 520px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible;
+}
+
+/* big circle behind image */
+.hero-right::before{
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: #d93b4a; /* red accent */
+    transform: translateX(40px);
+    z-index: 0;
+    opacity: 1;
+}
+
+/* optional secondary dark ring */
+.hero-right::after{
+    content: "";
+    position: absolute;
+    right: -40px;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    border: 2px dotted rgba(255,255,255,0.03);
+    z-index: 0;
+    opacity: 0.6;
+}
+
+/* image */
+.hero-img {
+    position: relative;
+    z-index: 1;
+    height: 520px;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+    display: block;
+    transform: translateX(18px); /* small overlap on the circle */
+}
+
+/* responsive breakpoints for larger layout */
+@media (max-width: 1200px) {
+    .hero {
+        max-width: 1100px;
+        grid-template-columns: 1fr 480px;
+        gap: 40px;
+        padding: 30px;
+    }
+    .hero-right { height: 420px; }
+    .hero-img { height: 420px; }
+}
+
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 16px;
+    }
+    .hero-right { height: 320px; }
+    .hero-img { height: 320px; transform: translateX(0); }
+}
+
+.education{
+    /* move the section closer to the hero */
+    max-width: 2500px;
+    width: calc(100% - 160px);
+    margin: -40px auto 40px;    /* negative top margin to raise the section */
+    display: grid;
+    grid-template-columns: 1fr 560px;
+    gap: 60px;
+    align-items: center;
+    padding: 24px 60px 40px;    /* reduced top padding */
+    background-color: #38304f;
+    border-radius: 8px;
+}
+
+/* left column (image) */
+.educationleft{
+    height: 320px;              /* slightly smaller so content feels balanced */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: visible;
+    margin-left: 100px;
+}
+
+.educationleft-img{
+    position: relative;
+    z-index: 1;
+    height: 320px;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    display: block;
+    margin-left: px;
+}
+
+/* right column (text) */
+.educationright{
+    color: #fff;
+    padding-right: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+
+    /* move content to the top of the section */
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 12px; /* optional: tweak to taste */
+}
+
+/* bigger, clearer title and supporting text */
+.education-title{
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    line-height: 1;
+    margin: 0 0 8px;
+    color: #fff;
+    letter-spacing: -0.6px;
+
+    /* ensure the title hugs the top of its column */
+    align-self: flex-start;
+    margin-top: 0;
+}
+
+.education-sub{
+    color: #cbbfe6;
+    font-weight: 600;
+    font-size: 20px;            /* larger subtitle */
+    margin-bottom: 8px;
+}
+
+.education-school{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.education-dates{
+    color: #d0c7df;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.education-desc{
+    color: #bfb6d7;
+    max-width: 720px;
+    width: 100%;
+    line-height: 1.7;
+    font-size: 18px;            /* larger body text */
+    margin: 0;
+}
+
+/* Projects Section */
+.projects {
+    max-width: 1400px;
+    width: calc(100% - 160px);
+    margin: 40px auto;
+    padding: 40px 60px;
+}
+
+.project-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 0;
+}
+
+.project-box {
+    background-color: #38304f;
+    border-radius: 12px;
+    padding: 24px;
+    width: 320px;
+    min-height: 380px;
+    position: relative;
+    transition: transform 0.3s ease;
+    
+    /* Glow effect */
+    box-shadow: 0 0 25px rgba(217, 59, 74, 0.15),
+                0 0 45px rgba(217, 59, 74, 0.1);
+}
+
+.project-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 35px rgba(217, 59, 74, 0.25),
+                0 0 65px rgba(217, 59, 74, 0.15);
+}
+
+.project-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.project-box h3 {
+    color: #ffffff;
+    font-size: 20px;
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}
+
+.project-box p {
+    color: #bfb6d7;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Connecting lines */
+.project-line {
+    height: 3px;
+    width: 60px;
+    background: linear-gradient(90deg, 
+        rgba(217, 59, 74, 0.3),
+        rgba(217, 59, 74, 0.6),
+        rgba(217, 59, 74, 0.3));
+    position: relative;
+}
+
+.project-line::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #d93b4a;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(217, 59, 74, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .project-container {
+        flex-direction: column;
+    }
+    
+    .project-line {
+        height: 60px;
+        width: 3px;
+    }
+}
