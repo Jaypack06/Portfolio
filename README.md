@@ -1,6 +1,5 @@
-# ⚡ [YOUR NAME] · PORTFOLIO 2.0
+# ⚡ Jayden Packer · PORTFOLIO 
 
-> *"Crafting digital experiences, one line of code at a time."*
 
 ---
 
