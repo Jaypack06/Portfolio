@@ -5,7 +5,7 @@
 
 ## 🌌 Live Universe
 
-**🚀 Explore the Portfolio:** [**your-portfolio-link.com**]([https://your-portfolio-link.com](https://jaypack06.github.io/Portfolio/#hero))
+**🚀 Explore the Portfolio:** [**jaypack06.github.io/Portfolio**](https://jaypack06.github.io/Portfolio/#hero)
 
 ---
 
