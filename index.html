@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jayden Packer · Portfolio</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
     <!-- TASKBAR -->
     <nav class="taskbar" id="taskbar">
@@ -30,7 +32,7 @@
 
         <div class="rail-spacer"></div>
 
-        <a href="#contact" class="rail-link rail-contact">
+        <a href="contact.html" class="rail-link rail-contact">
             <span class="rail-dot"></span>
             <span class="rail-label">Contact</span>
         </a>
@@ -43,7 +45,8 @@
             <h1 class="hero-title">Jayden Packer</h1>
             <div class="hero-sub">Computer Science student</div>
             <p class="hero-desc">
-                I'm a passionate computer science student with a knack for problem-solving and a love for coding and network engineering. 
+                I'm a passionate computer science student with a knack for problem-solving and a love for coding and
+                network engineering.
                 Explore my portfolio to see my projects and skills!
             </p>
         </div>
@@ -63,7 +66,8 @@
             <div class="education-school">Indiana Institute of Technology</div>
             <div class="education-dates">2024 - 2028 (Expected Graduation)</div>
             <p class="education-desc">
-                Will be graduating with a Bachelor's degree in Computer Science with a certification in artifical inteligence.
+                Will be graduating with a Bachelor's degree in Computer Science with a certification in artifical
+                inteligence.
             </p>
         </div>
     </section>
@@ -74,26 +78,72 @@
             <div class="project-box">
                 <img src="project1IMG.jpeg" alt="Project 1" class="project-img">
                 <h3>Home Lab</h3>
-                <p>This a old Cisco router that has it's own subnet that has currently two servers one running Pihole for add blocking and the other is a media server. The servers are those laptops at the top running Ubuntu server.</p>
+                <p>This a old Cisco router that has it's own subnet that has currently two servers one running Pihole
+                    for add blocking and the other is a media server. The servers are those laptops at the top running
+                    Ubuntu server.</p>
             </div>
-            
+
             <div class="project-line"></div>
-            
+
             <div class="project-box">
                 <img src="project2.jpg" alt="Project 2" class="project-img">
-                <h3>Project Title</h3>
-                <p>Project description goes here. Explain what you built and the technologies used.</p>
+                <h3>Research Assistant</h3>
+                <p>Built an active learning 2d computer vision pipe line from collecting data to exporting needed data
+                    and segmentation's.</p>
             </div>
-            
+
             <div class="project-line"></div>
-            
+
             <div class="project-box">
-                <img src="project3.jpg" alt="Project 3" class="project-img">
-                <h3>Project Title</h3>
-                <p>Project description goes here. Explain what you built and the technologies used.</p>
+                <img src="project3.png" alt="Project 3" class="project-img">
+                <h3>Capstone Project for Web Design</h3>
+                <p>For this project I decided to make a website for a potential start up I had in mind.</p>
             </div>
         </div>
     </section>
+
+    <!-- RESUME -->
+    <section id="resume" class="resume-section">
+        <div class="resume-header">
+            <span class="hero-badge">Resume</span>
+            <h2 class="resume-title">Jayden Packer</h2>
+            <p class="resume-desc">
+                Full resume — education, technical skills, and projects.
+            </p>
+        </div>
+
+        <div class="resume-viewer">
+            <div class="resume-viewer-bar">
+                <div class="viewer-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="viewer-filename">Jayden-Packer-Resume.pdf</div>
+                <div class="viewer-actions">
+                    <a href="Resume_5-06-26.pdf" target="_blank" rel="noopener" class="btn-view">
+                        Open in new tab
+                    </a>
+                    <a href="Resume_5-06-26.pdf" download class="btn-download">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        Download
+                    </a>
+                </div>
+            </div>
+
+            <div class="resume-frame">
+                <iframe src="Resume_5-06-26.pdf#view=FitH" title="Jayden Packer Resume" loading="lazy">
+                    <p>Your browser doesn't support embedded PDFs.
+                        <a href="Resume_5-06-26.pdf">Download the resume</a> instead.
+                    </p>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
 
     <!-- SCROLL SCRIPT -->
     <script>
@@ -154,4 +204,5 @@
         })();
     </script>
 </body>
+
 </html>

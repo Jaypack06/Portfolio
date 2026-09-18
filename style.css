@@ -639,3 +639,471 @@ body.shifted { padding-left: 0; }
         padding: 24px 16px;
     }
 }
+
+/* ============================================================
+   CONTACT PAGE — matches portfolio theme
+   ============================================================ */
+
+/* This page uses a horizontal nav instead of the vertical rail,
+   so cancel the body padding-left from the portfolio layout. */
+body.contact-page {
+    padding-left: 0;
+}
+
+/* ---------- NAV (horizontal top bar) ---------- */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(17, 0, 54, 0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(217, 59, 74, 0.18);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo {
+    height: 44px;
+    width: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(217, 59, 74, 0.3);
+}
+
+.nav-links {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-link {
+    color: #d8cff0;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 20px;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #fff;
+    background: rgba(217, 59, 74, 0.12);
+    transform: translateY(-1px);
+}
+
+/* ---------- HERO ---------- */
+.goal-hero {
+    max-width: 1100px;
+    margin: 60px auto 40px;
+    padding: 0 40px;
+}
+
+.hero-content {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 56px 48px;
+    background: linear-gradient(145deg, #2f2747, #38304f);
+    border: 1px solid rgba(217, 59, 74, 0.2);
+    border-radius: 24px;
+    box-shadow:
+        0 25px 50px -20px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* soft red glow behind the hero */
+.hero-content::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(217, 59, 74, 0.35), transparent 70%);
+    pointer-events: none;
+}
+
+.hero-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 0 20px rgba(217, 59, 74, 0.6));
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    line-height: 1.1;
+    color: #fff;
+    margin: 0 0 16px;
+    letter-spacing: -0.6px;
+    text-shadow: 0 0 30px rgba(217, 59, 74, 0.3);
+}
+
+.highlight {
+    color: #d93b4a;
+    text-shadow: 0 0 25px rgba(217, 59, 74, 0.55);
+}
+
+.hero-description {
+    color: #bfb6d7;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto 32px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(217, 59, 74, 0.4);
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #cbbfe6;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ---------- SECTION TITLE ---------- */
+.centered-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: #fff;
+    margin: 60px 0 40px;
+    letter-spacing: -0.4px;
+    text-shadow: 0 0 25px rgba(217, 59, 74, 0.25);
+}
+
+/* ---------- CONTACT GRID ---------- */
+.contact-grid {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.contact-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(145deg, #2f2747, #38304f);
+    border: 1px solid rgba(217, 59, 74, 0.2);
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow:
+        0 0 25px rgba(217, 59, 74, 0.15),
+        0 10px 30px -10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(217, 59, 74, 0.5);
+    box-shadow:
+        0 0 35px rgba(217, 59, 74, 0.35),
+        0 20px 40px -12px rgba(0, 0, 0, 0.8);
+}
+
+.contact-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 0 12px rgba(217, 59, 74, 0.5));
+}
+
+.contact-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+}
+
+.contact-detail {
+    color: #bfb6d7;
+    font-size: 14px;
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+/* the second line reads as a quieter sub-detail */
+.contact-detail + .contact-detail {
+    margin-top: 2px;
+    color: #9a8fbb;
+    font-size: 13px;
+}
+
+/* ---------- FEATURE TAGS (bottom badges) ---------- */
+.feature-tag {
+    display: inline-block;
+    background: rgba(217, 59, 74, 0.12);
+    border: 1px solid rgba(217, 59, 74, 0.3);
+    color: #cbbfe6;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 0 20px rgba(217, 59, 74, 0.15);
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.feature-tag:hover {
+    background: rgba(217, 59, 74, 0.2);
+    transform: translateY(-2px);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #7a6d9c;
+    font-size: 13px;
+    border-top: 1px solid rgba(217, 59, 74, 0.15);
+    margin-top: 60px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    nav {
+        padding: 12px 20px;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .goal-hero { padding: 0 20px; }
+    .hero-content { padding: 40px 24px; }
+    .hero-title { font-size: 38px; }
+    .hero-stats { gap: 32px; }
+    .centered-title { font-size: 32px; }
+    .contact-grid { padding: 0 20px; }
+}
+
+/* ============================================================
+   RESUME SECTION (embedded PDF viewer)
+   ============================================================ */
+
+.resume-section {
+    max-width: 1400px;
+    width: calc(100% - 160px);
+    margin: 40px auto 80px;
+    padding: 0 60px;
+}
+
+/* ---------- Header above the viewer ---------- */
+.resume-header {
+    margin-bottom: 28px;
+}
+
+.resume-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    line-height: 1.1;
+    letter-spacing: -0.6px;
+    margin: 14px 0 10px;
+    color: #fff;
+    text-shadow: 0 0 25px rgba(217, 59, 74, 0.3);
+}
+
+.resume-desc {
+    color: #bfb6d7;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0;
+}
+
+/* ---------- Viewer shell (looks like a mini app window) ---------- */
+.resume-viewer {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #2f2747, #38304f);
+    border: 1px solid rgba(217, 59, 74, 0.25);
+    box-shadow:
+        0 25px 60px -20px rgba(0, 0, 0, 0.75),
+        0 0 40px rgba(217, 59, 74, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* soft red glow behind the frame */
+.resume-viewer::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(217, 59, 74, 0.28), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ---------- Top bar inside the viewer ---------- */
+.resume-viewer-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 18px;
+    background: rgba(17, 0, 54, 0.55);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(217, 59, 74, 0.2);
+}
+
+.viewer-dots {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.viewer-dots span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: rgba(217, 59, 74, 0.4);
+    box-shadow: 0 0 6px rgba(217, 59, 74, 0.3);
+}
+
+.viewer-dots span:nth-child(2) { background: rgba(203, 191, 230, 0.35); box-shadow: none; }
+.viewer-dots span:nth-child(3) { background: rgba(203, 191, 230, 0.2); box-shadow: none; }
+
+.viewer-filename {
+    color: #cbbfe6;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.viewer-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* ---------- Buttons ---------- */
+.btn-download,
+.btn-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.25s ease,
+                background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.btn-download {
+    background: linear-gradient(145deg, #d93b4a, #8f1f2c);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 16px rgba(217, 59, 74, 0.4);
+}
+
+.btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(217, 59, 74, 0.55), 0 0 18px rgba(217, 59, 74, 0.45);
+}
+
+.btn-view {
+    color: #cbbfe6;
+    background: rgba(217, 59, 74, 0.08);
+    border: 1px solid rgba(217, 59, 74, 0.3);
+}
+
+.btn-view:hover {
+    color: #fff;
+    background: rgba(217, 59, 74, 0.18);
+    border-color: rgba(217, 59, 74, 0.55);
+    transform: translateY(-2px);
+}
+
+/* ---------- The PDF iframe ---------- */
+.resume-frame {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 850px;                /* tall enough to read a full page */
+    background: #1b0f42;
+}
+
+.resume-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    background: #1b0f42;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .resume-section {
+        width: calc(100% - 32px);
+        padding: 0 16px;
+        margin-bottom: 56px;
+    }
+    .resume-title {
+        font-size: 34px;
+    }
+    .resume-viewer-bar {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 14px;
+    }
+    .viewer-filename {
+        order: -1;
+        flex-basis: 100%;
+        text-align: center;
+    }
+    .viewer-actions {
+        margin-left: auto;
+    }
+    .btn-download,
+    .btn-view {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+    .resume-frame {
+        height: 600px;
+    }
+}
