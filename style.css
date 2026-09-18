@@ -1,197 +1,359 @@
+/* ---------- FONT IMPORTS ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+
+/* ---------- RESET & GLOBAL ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html {
     scroll-behavior: smooth;
 }
 
-/* Update taskbar links */
-.taskbar a {
-    text-decoration: none;
-    color: #ffffff;
-}
-
 body {
     background-color: #110036;
-    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin: 0;
-    transition: padding-left 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1.5;
+    color: #fff;
+    padding-left: 88px;
+    transition: padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Add padding when taskbar is vertical */
-body.shifted {
-    padding-left: 88px; /* matches taskbar width */
+@media (max-width: 900px) {
+    body { padding-left: 0; }
 }
 
+body.shifted { padding-left: 0; }
+
+/* ---------- TASKBAR (vertical rail) ---------- */
 .taskbar {
     position: fixed;
-    gap: 48px;
     top: 0;
     left: 0;
     z-index: 999;
-    width: 100%;
-    height: 64px;
+    width: 88px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 10px;
+    background:
+        linear-gradient(180deg, rgba(17, 0, 54, 0.98) 0%, rgba(24, 4, 66, 0.98) 100%);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(217, 59, 74, 0.18);
+    box-shadow:
+        6px 0 24px rgba(0, 0, 0, 0.5),
+        inset -1px 0 0 rgba(217, 59, 74, 0.12);
+    transform: translateX(0);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+/* glowing accent strip on the right edge of the rail */
+.taskbar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -1px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(217, 59, 74, 0.7) 20%,
+        rgba(217, 59, 74, 1) 50%,
+        rgba(217, 59, 74, 0.7) 80%,
+        transparent 100%
+    );
+    filter: blur(0.5px);
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.taskbar.hidden {
+    transform: translateX(-100%);
+}
+
+/* --- Logo badge --- */
+.taskbar1 {
     display: flex;
     align-items: center;
-    padding: 12px 28px;
-    background: rgba(17,0,54,0.98);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
-    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Sliding up animation state */
-.taskbar.sliding-up {
-    transform: translateY(-100%);
-}
-
-/* Vertical state with slide-in from left */
-.taskbar.vertical {
-    width: 88px;
-    height: 100vh;
-    padding: 20px 8px;
-    flex-direction: column;
-    gap: 18px;
-    transform: translateX(-100%);
-    animation: slideInLeft 600ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* Sliding right animation state */
-.taskbar.sliding-right {
-    width: 88px;
-    height: 100vh;
-    padding: 20px 8px;
-    flex-direction: column;
-    transform: translateX(100%);
-}
-
-@keyframes slideInLeft {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
-}
-
-/* logo adjustments */
-.taskbar1 {
-    width: 64px;
-    justify-self: start;
-    align-self: center;
-    margin-left: 12px;
-    transition: margin 420ms ease;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #2f2747, #1b0f42);
+    border: 1px solid rgba(217, 59, 74, 0.35);
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 20px rgba(217, 59, 74, 0.15),
+        0 0 24px rgba(217, 59, 74, 0.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
-}
-.taskbar.vertical .taskbar1 {
-    margin-left: 0;
+    margin-bottom: 6px;
 }
 
-/* logo image sizing */
+.taskbar1:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow:
+        0 10px 26px rgba(0, 0, 0, 0.6),
+        inset 0 0 24px rgba(217, 59, 74, 0.25),
+        0 0 32px rgba(217, 59, 74, 0.4);
+}
+
 .taskbar1 img {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 10px;
     display: block;
 }
-.taskbar.vertical .taskbar1 img {
-    width: 56px;
-    height: 56px;
+
+/* --- Divider --- */
+.rail-divider {
+    width: 34px;
+    height: 1px;
+    margin: 6px 0 10px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(217, 59, 74, 0.6),
+        transparent
+    );
+    box-shadow: 0 0 8px rgba(217, 59, 74, 0.5);
 }
 
-/* nav items container */
-.taskbar > :not(.taskbar1) {
+/* pushes the Contact link to the bottom */
+.rail-spacer {
+    flex: 1;
+}
+
+/* --- Rail links (nav items) --- */
+.rail-link {
+    position: relative;
     display: flex;
-    gap: 100px;
-    align-items: right;
-}
-
-/* nav items: reset grid positioning when vertical */
-.taskbar2, .taskbar3, .taskbar4, .taskbar5 {
-    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 48px;
+    border-radius: 12px;
+    color: #d8cff0;
     font-size: 16px;
     font-weight: 600;
+    letter-spacing: 0.2px;
     text-decoration: none;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    width:max-content;
-    padding: 100px;
+    background: transparent;
+    border: 1px solid transparent;
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
 }
 
-.taskbar2:hover,
-.taskbar3:hover,
-.taskbar4:hover,
-.taskbar5:hover {
-    color: #d93b4a;
+/* glowing dot indicator */
+.rail-dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d93b4a;
+    box-shadow: 0 0 10px rgba(217, 59, 74, 0.9);
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* clear grid-column overrides in vertical mode and stack */
-.taskbar.vertical .taskbar2,
-.taskbar.vertical .taskbar3,
-.taskbar.vertical .taskbar4,
-.taskbar.vertical .taskbar5 {
-    /* stack visually and make labels compact */
-    margin: 8px 0;
-    font-size: 13px;
-              /* rotate labels so they read roughly horizontally */
-    transform-origin: center;
-    white-space: nowrap;
-    width: max-content;
+.rail-label {
+    transition: transform 0.25s ease;
+    text-align: center;
+    line-height: 1.1;
 }
 
-/* make contact button smaller and vertical-friendly */
-.taskbar.vertical .taskbar5 {
-    width: 56px;
-    height: 36px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+/* hover */
+.rail-link:hover {
+    color: #ffffff;
+    background: linear-gradient(145deg, rgba(217, 59, 74, 0.14), rgba(217, 59, 74, 0.05));
+    border-color: rgba(217, 59, 74, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 18px rgba(217, 59, 74, 0.25);
 }
 
-/* small visual polish during animation */
-.taskbar, .taskbar * {
-    will-change: transform, width, height, padding, opacity;
+.rail-link:hover .rail-dot {
+    opacity: 1;
+    transform: scale(1);
 }
 
-/* HERO */
+.rail-link:hover .rail-label {
+    transform: translateY(-1px);
+}
+
+/* active / current section (optional — applies on focus for keyboard users) */
+.rail-link:focus-visible {
+    outline: none;
+    border-color: #d93b4a;
+    box-shadow: 0 0 0 2px rgba(217, 59, 74, 0.35);
+}
+
+/* --- Contact (special) --- */
+.rail-contact {
+    width: 64px;
+    height: 56px;
+    color: #ffffff;
+    background: linear-gradient(145deg, #d93b4a, #8f1f2c);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 8px 20px rgba(217, 59, 74, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    font-size: 11px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.rail-contact .rail-dot {
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+}
+
+.rail-contact:hover {
+    background: linear-gradient(145deg, #e64554, #a82433);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 10px 26px rgba(217, 59, 74, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 24px rgba(217, 59, 74, 0.5);
+    transform: translateY(-3px);
+}
+
+/* ---------- MOBILE: horizontal top bar ---------- */
+@media (max-width: 900px) {
+    .taskbar {
+        width: 100%;
+        height: 68px;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 8px 16px;
+        border-right: none;
+        border-bottom: 1px solid rgba(217, 59, 74, 0.18);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    .taskbar::after {
+        top: auto;
+        bottom: -1px;
+        right: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(217, 59, 74, 0.8),
+            transparent
+        );
+    }
+
+    .taskbar.hidden { transform: translateX(0); }
+
+    .taskbar1 {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        margin-bottom: 0;
+    }
+
+    .taskbar1 img { width: 32px; height: 32px; }
+
+    .rail-divider {
+        width: 1px;
+        height: 28px;
+        margin: 0 4px;
+        background: linear-gradient(180deg, transparent, rgba(217, 59, 74, 0.6), transparent);
+    }
+
+    .rail-spacer { flex: 0; }
+
+    .rail-link {
+        width: auto;
+        height: 36px;
+        padding: 0 12px;
+        border-radius: 10px;
+        font-size: 12px;
+    }
+
+    .rail-dot { display: none; }
+
+    .rail-contact {
+        width: auto;
+        height: 36px;
+        padding: 0 14px;
+        font-size: 11px;
+        margin-left: auto;
+    }
+}
+
+/* ---------- HERO ---------- */
 .hero {
-    /* allow the hero to occupy more horizontal space */
-    max-width: 1400px;
+    max-width: 1600px;
     width: calc(100% - 160px);
     margin: 40px auto;
     display: grid;
-    grid-template-columns: 1fr 640px; /* larger right column for the image */
+    grid-template-columns: 1.4fr 560px;
     gap: 60px;
     align-items: center;
     padding: 40px 60px;
 }
 
-/* left column (text) */
-.hero-left { color: #fff; padding-right: 16px; }
+.hero-left {
+    color: #fff;
+    padding: 32px 40px;
+    background-color: #110036;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(217, 59, 74, 0.2);
+    border-radius: 30px;
+    
+    
+}
+
 .hero-badge {
     display: inline-block;
     background: #5b2338;
     color: #fff;
-    padding: 6px 12px;
-    border-radius: 8px;
+    padding: 6px 14px;
+    border-radius: 30px;
     font-size: 13px;
     font-weight: 600;
+    letter-spacing: 0.5px;
     margin-bottom: 18px;
+    box-shadow: 0 0 20px rgba(217, 59, 74, 0.3);
+    border: 1px solid rgba(217, 59, 74, 0.4);
 }
+
 .hero-title {
     font-family: 'Playfair Display', serif;
     font-size: 56px;
-    line-height: 1;
+    line-height: 1.1;
     margin: 0 0 8px;
     color: #fff;
     letter-spacing: -0.6px;
+    text-shadow: 0 0 30px rgba(217, 59, 74, 0.3);
 }
+
 .hero-sub {
     color: #cbbfe6;
     font-weight: 600;
     margin-bottom: 18px;
     font-size: 18px;
 }
+
 .hero-desc {
     color: #bfb6d7;
     max-width: 640px;
@@ -200,7 +362,6 @@ body.shifted {
     margin: 0;
 }
 
-/* right column (image + decorative shapes) */
 .hero-right {
     position: relative;
     height: 520px;
@@ -210,34 +371,32 @@ body.shifted {
     overflow: visible;
 }
 
-/* big circle behind image */
-.hero-right::before{
+.hero-right::before {
     content: "";
     position: absolute;
     right: 0;
     width: 420px;
     height: 420px;
     border-radius: 50%;
-    background: #d93b4a; /* red accent */
+    background: #d93b4a;
     transform: translateX(40px);
     z-index: 0;
-    opacity: 1;
+    filter: blur(2px);
+    box-shadow: 0 0 80px rgba(217, 59, 74, 0.5);
 }
 
-/* optional secondary dark ring */
-.hero-right::after{
+.hero-right::after {
     content: "";
     position: absolute;
     right: -40px;
     width: 520px;
     height: 520px;
     border-radius: 50%;
-    border: 2px dotted rgba(255,255,255,0.03);
+    border: 2px dotted rgba(255, 255, 255, 0.06);
     z-index: 0;
     opacity: 0.6;
 }
 
-/* image */
 .hero-img {
     position: relative;
     z-index: 1;
@@ -245,51 +404,30 @@ body.shifted {
     width: auto;
     max-width: 100%;
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+    border-radius: 16px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(217, 59, 74, 0.2);
     display: block;
-    transform: translateX(18px); /* small overlap on the circle */
+    transform: translateX(18px);
 }
 
-/* responsive breakpoints for larger layout */
-@media (max-width: 1200px) {
-    .hero {
-        max-width: 1100px;
-        grid-template-columns: 1fr 480px;
-        gap: 40px;
-        padding: 30px;
-    }
-    .hero-right { height: 420px; }
-    .hero-img { height: 420px; }
-}
-
-@media (max-width: 900px) {
-    .hero {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        padding: 16px;
-    }
-    .hero-right { height: 320px; }
-    .hero-img { height: 320px; transform: translateX(0); }
-}
-
-.education{
-    /* move the section closer to the hero */
+/* ---------- EDUCATION ---------- */
+.education {
     max-width: 2500px;
     width: calc(100% - 160px);
-    margin: -40px auto 40px;    /* negative top margin to raise the section */
+    margin: -40px auto 40px;
     display: grid;
     grid-template-columns: 1fr 560px;
     gap: 60px;
     align-items: center;
-    padding: 24px 60px 40px;    /* reduced top padding */
-    background-color: #38304f;
-    border-radius: 8px;
+    padding: 24px 60px 40px;
+    background: linear-gradient(145deg, #2f2747, #38304f);
+    border-radius: 24px;
+    box-shadow: 0 25px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(217, 59, 74, 0.15);
 }
 
-/* left column (image) */
-.educationleft{
-    height: 320px;              /* slightly smaller so content feels balanced */
+.educationleft {
+    height: 320px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -297,77 +435,67 @@ body.shifted {
     margin-left: 100px;
 }
 
-.educationleft-img{
+.educationleft-img {
     position: relative;
     z-index: 1;
     height: 320px;
     width: auto;
     max-width: 100%;
     object-fit: cover;
-    border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(217, 59, 74, 0.2);
     display: block;
-    margin-left: px;
 }
 
-/* right column (text) */
-.educationright{
+.educationright {
     color: #fff;
-    padding-right: 0;
-    text-align: left;
     display: flex;
     flex-direction: column;
-
-    /* move content to the top of the section */
     justify-content: flex-start;
     align-items: flex-start;
-    padding-top: 12px; /* optional: tweak to taste */
+    padding-top: 12px;
 }
 
-/* bigger, clearer title and supporting text */
-.education-title{
+.education-title {
     font-family: 'Playfair Display', serif;
     font-size: 72px;
     line-height: 1;
     margin: 0 0 8px;
     color: #fff;
     letter-spacing: -0.6px;
-
-    /* ensure the title hugs the top of its column */
-    align-self: flex-start;
-    margin-top: 0;
+    text-shadow: 0 0 25px rgba(217, 59, 74, 0.3);
 }
 
-.education-sub{
+.education-subtitle {
     color: #cbbfe6;
     font-weight: 600;
-    font-size: 20px;            /* larger subtitle */
+    font-size: 20px;
     margin-bottom: 8px;
 }
 
-.education-school{
+.education-school {
     color: #ffffff;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 6px;
 }
 
-.education-dates{
+.education-dates {
     color: #d0c7df;
     font-size: 16px;
     margin-bottom: 16px;
 }
 
-.education-desc{
+.education-desc {
     color: #bfb6d7;
     max-width: 720px;
     width: 100%;
     line-height: 1.7;
-    font-size: 18px;            /* larger body text */
+    font-size: 18px;
     margin: 0;
 }
 
-/* Projects Section */
+/* ---------- PROJECTS ---------- */
 .projects {
     max-width: 1400px;
     width: calc(100% - 160px);
@@ -381,41 +509,43 @@ body.shifted {
     justify-content: center;
     gap: 20px;
     padding: 40px 0;
+    flex-wrap: wrap;
 }
 
 .project-box {
-    background-color: #38304f;
-    border-radius: 12px;
+    background: linear-gradient(145deg, #2f2747, #38304f);
+    border-radius: 20px;
     padding: 24px;
     width: 320px;
     min-height: 380px;
     position: relative;
-    transition: transform 0.3s ease;
-    
-    /* Glow effect */
-    box-shadow: 0 0 25px rgba(217, 59, 74, 0.15),
-                0 0 45px rgba(217, 59, 74, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 25px rgba(217, 59, 74, 0.15), 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(217, 59, 74, 0.2);
 }
 
 .project-box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 35px rgba(217, 59, 74, 0.25),
-                0 0 65px rgba(217, 59, 74, 0.15);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 0 35px rgba(217, 59, 74, 0.35), 0 20px 40px -12px rgba(0, 0, 0, 0.8);
+    border-color: rgba(217, 59, 74, 0.5);
 }
 
 .project-img {
     width: 100%;
     height: 180px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .project-box h3 {
     color: #ffffff;
     font-size: 20px;
     margin: 0 0 12px 0;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: -0.3px;
 }
 
 .project-box p {
@@ -425,38 +555,87 @@ body.shifted {
     margin: 0;
 }
 
-/* Connecting lines */
 .project-line {
     height: 3px;
     width: 60px;
-    background: linear-gradient(90deg, 
-        rgba(217, 59, 74, 0.3),
-        rgba(217, 59, 74, 0.6),
-        rgba(217, 59, 74, 0.3));
+    background: linear-gradient(90deg, rgba(217, 59, 74, 0.2), #d93b4a, rgba(217, 59, 74, 0.2));
     position: relative;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(217, 59, 74, 0.5);
 }
 
 .project-line::before {
     content: '';
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     background-color: #d93b4a;
     border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 15px rgba(217, 59, 74, 0.5);
+    box-shadow: 0 0 20px #d93b4a, 0 0 30px rgba(217, 59, 74, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive adjustments */
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 1200px) {
-    .project-container {
-        flex-direction: column;
+    .hero {
+        max-width: 1100px;
+        grid-template-columns: 1fr 480px;
+        gap: 40px;
+        padding: 30px;
     }
-    
+    .hero-right, .hero-img { height: 420px; }
+    .project-container { flex-direction: column; }
     .project-line {
         height: 60px;
         width: 3px;
+        background: linear-gradient(180deg, rgba(217, 59, 74, 0.2), #d93b4a, rgba(217, 59, 74, 0.2));
+    }
+    .education {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px;
+    }
+    .educationleft {
+        margin-left: 0;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 90px 16px 16px;
+    }
+    .hero-right, .hero-img {
+        height: 320px;
+        transform: translateX(0);
+    }
+    .hero-right::before {
+        width: 280px;
+        height: 280px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .hero-right::after {
+        width: 360px;
+        height: 360px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .hero-img { transform: translateX(0); }
+    .education-title { font-size: 48px; }
+    .education-desc { font-size: 16px; }
+    .educationleft-img { height: 240px; }
+    .education {
+        width: calc(100% - 32px);
+        margin-top: 24px;
+    }
+    .projects {
+        width: calc(100% - 32px);
+        padding: 24px 16px;
     }
 }
