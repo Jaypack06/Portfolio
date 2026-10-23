@@ -3,14 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#110036">
     <title>Jayden Packer · Portfolio</title>
+    <script>document.documentElement.classList.add('js')</script>
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body class="has-rail">
     <!-- TASKBAR -->
-    <nav class="taskbar" id="taskbar">
+    <nav class="taskbar" id="taskbar" aria-label="Main navigation">
         <a href="#hero" class="taskbar1" aria-label="Home">
             <img src="OIP (1).webp" alt="logo">
         </a>
@@ -19,14 +21,32 @@
 
         <a href="#education" class="rail-link">
             <span class="rail-dot"></span>
+            <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 10 12 5 2 10l10 5 10-5z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+            </svg>
             <span class="rail-label">Education</span>
         </a>
         <a href="#projects" class="rail-link">
             <span class="rail-dot"></span>
+            <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+            </svg>
             <span class="rail-label">Projects</span>
         </a>
         <a href="#resume" class="rail-link">
             <span class="rail-dot"></span>
+            <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                <path d="M14 3v5h5" />
+                <path d="M9 13h6M9 17h6" />
+            </svg>
             <span class="rail-label">Resume</span>
         </a>
 
@@ -34,14 +54,19 @@
 
         <a href="contact.html" class="rail-link rail-contact">
             <span class="rail-dot"></span>
+            <svg class="rail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m3 7 9 6 9-6" />
+            </svg>
             <span class="rail-label">Contact</span>
         </a>
     </nav>
 
     <!-- HERO -->
     <section id="hero" class="hero">
-        <div class="hero-left">
-            <span class="hero-badge">Welcome! I'M</span>
+        <div class="hero-left reveal">
+            <span class="hero-badge">Hi, I'm</span>
             <h1 class="hero-title">Jayden Packer</h1>
             <div class="hero-sub">Computer Science student</div>
             <p class="hero-desc">
@@ -49,14 +74,18 @@
                 network engineering.
                 Explore my portfolio to see my projects and skills!
             </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View my projects</a>
+                <a href="#resume" class="btn btn-ghost">See my resume</a>
+            </div>
         </div>
-        <div class="hero-right">
+        <div class="hero-right reveal">
             <img src="IMG_0576-removebg-preview.png" alt="profile" class="hero-img">
         </div>
     </section>
 
     <!-- EDUCATION -->
-    <section id="education" class="education">
+    <section id="education" class="education reveal">
         <div class="educationleft">
             <img class="educationleft-img" src="OIP.webp" alt="school">
         </div>
@@ -66,35 +95,36 @@
             <div class="education-school">Indiana Institute of Technology</div>
             <div class="education-dates">2024 - 2028 (Expected Graduation)</div>
             <p class="education-desc">
-                Will be graduating with a Bachelor's degree in Computer Science with a certification in artifical
-                inteligence.
+                Will be graduating with a Bachelor's degree in Computer Science with a certification in artificial
+                intelligence.
             </p>
         </div>
     </section>
 
     <!-- PROJECTS -->
     <section id="projects" class="projects">
+        <div class="section-head reveal">
+            <span class="hero-badge">Projects</span>
+            <h2 class="section-title">Things I've built.</h2>
+            <p class="section-lead">A few hands-on projects across networking, computer vision, and web design.</p>
+        </div>
         <div class="project-container">
-            <div class="project-box">
+            <div class="project-box reveal">
                 <img src="project1IMG.jpeg" alt="Project 1" class="project-img">
                 <h3>Home Lab</h3>
-                <p>This a old Cisco router that has it's own subnet that has currently two servers one running Pihole
+                <p>This is an old Cisco router that has its own subnet that has currently two servers one running Pihole
                     for add blocking and the other is a media server. The servers are those laptops at the top running
                     Ubuntu server.</p>
             </div>
 
-            <div class="project-line"></div>
-
-            <div class="project-box">
+            <div class="project-box reveal">
                 <img src="project2.jpg" alt="Project 2" class="project-img">
                 <h3>Research Assistant</h3>
                 <p>Built an active learning 2d computer vision pipe line from collecting data to exporting needed data
-                    and segmentation's.</p>
+                    and segmentations.</p>
             </div>
 
-            <div class="project-line"></div>
-
-            <div class="project-box">
+            <div class="project-box reveal">
                 <img src="project3.png" alt="Project 3" class="project-img">
                 <h3>Capstone Project for Web Design</h3>
                 <p>For this project I decided to make a website for a potential start up I had in mind.</p>
@@ -104,7 +134,7 @@
 
     <!-- RESUME -->
     <section id="resume" class="resume-section">
-        <div class="resume-header">
+        <div class="resume-header reveal">
             <span class="hero-badge">Resume</span>
             <h2 class="resume-title">Jayden Packer</h2>
             <p class="resume-desc">
@@ -112,7 +142,7 @@
             </p>
         </div>
 
-        <div class="resume-viewer">
+        <div class="resume-viewer reveal">
             <div class="resume-viewer-bar">
                 <div class="viewer-dots">
                     <span></span><span></span><span></span>
@@ -145,62 +175,135 @@
     </section>
 
 
-    <!-- SCROLL SCRIPT -->
+    <!-- SCROLL-IN ANIMATION -->
+    <script>
+        (function () {
+            var items = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) {
+                items.forEach(function (el) { el.classList.add('in'); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    var el = entry.target;
+                    var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+                    el.style.transitionDelay = (idx % 4) * 100 + 'ms';   // gentle stagger
+                    el.classList.add('in');
+                    setTimeout(function () { el.style.transitionDelay = ''; }, 1200);
+                    io.unobserve(el);
+                });
+            }, { threshold: 0.12 });
+            items.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+
+    <!-- NAV SCRIPT: slide-away rail (desktop) + current-section highlight -->
     <script>
         (function () {
             const bar = document.getElementById('taskbar');
-            const body = document.body;
             if (!bar) return;
 
-            const isMobile = () => window.innerWidth <= 900;
+            const mq = window.matchMedia('(max-width: 900px)');
+            const THRESHOLD = 120;   // don't hide until scrolled this far
+            const DELTA = 8;         // ignore tiny scroll jitters
 
-            let lastScroll = 0;
-            let ticking = false;
-            const THRESHOLD = 120;
-            const DELTA = 6;
             let hidden = false;
+            let lastY = window.scrollY;
+            let ticking = false;
+            let navigating = false;  // true while a nav-link smooth scroll is running
+            let navTimer;
 
+            /* Only a CSS class toggle: the rail slides with transform and the page
+               layout never changes, so scrolling can't feed back into itself. */
             function setHidden(state) {
+                if (state && mq.matches) state = false;   // never hide on phones/tablets
                 if (state === hidden) return;
                 hidden = state;
                 bar.classList.toggle('hidden', state);
-                body.classList.toggle('shifted', state);
             }
 
-            function onScroll() {
+            function update() {
+                ticking = false;
+                const y = Math.max(0, window.scrollY);
+
+                if (mq.matches || navigating) { lastY = y; return; }
+
+                if (y <= THRESHOLD) {
+                    setHidden(false);
+                    lastY = y;
+                    return;
+                }
+
+                const diff = y - lastY;
+                if (Math.abs(diff) > DELTA) {
+                    if (!bar.matches(':hover')) setHidden(diff > 0);
+                    lastY = y;
+                }
+            }
+
+            function endNavSoon(ms) {
+                clearTimeout(navTimer);
+                navTimer = setTimeout(function () {
+                    navigating = false;
+                    lastY = window.scrollY;
+                }, ms);
+            }
+
+            window.addEventListener('scroll', function () {
+                if (navigating) endNavSoon(150);          // keep lock until scrolling settles
                 if (ticking) return;
                 ticking = true;
-                requestAnimationFrame(() => {
-                    const y = window.scrollY || window.pageYOffset;
+                requestAnimationFrame(update);
+            }, { passive: true });
 
-                    if (isMobile()) {
-                        setHidden(false);
-                        lastScroll = y;
-                        ticking = false;
-                        return;
-                    }
+            // Clicking a nav link: keep the rail visible while the page scrolls there
+            bar.querySelectorAll('a[href^="#"]').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    navigating = true;
+                    setHidden(false);
+                    endNavSoon(250);
+                });
+            });
 
-                    const diff = y - lastScroll;
+            // Bring the rail back by moving the mouse to the left edge, or by keyboard focus
+            window.addEventListener('mousemove', function (e) {
+                if (hidden && e.clientX <= 24) setHidden(false);
+            }, { passive: true });
+            bar.addEventListener('focusin', function () { setHidden(false); });
 
-                    if (Math.abs(diff) > DELTA) {
-                        if (diff > 0 && y > THRESHOLD) {
-                            setHidden(true);
-                        } else if (diff < 0) {
-                            setHidden(false);
-                        }
-                        lastScroll = y;
-                    } else if (y <= THRESHOLD && hidden) {
-                        setHidden(false);
-                    }
+            function onViewportChange() {
+                if (mq.matches) setHidden(false);
+                lastY = window.scrollY;
+            }
+            if (mq.addEventListener) mq.addEventListener('change', onViewportChange);
+            else mq.addListener(onViewportChange);        // Safari < 14
 
-                    ticking = false;
+            /* ---- highlight the link for the section currently on screen ---- */
+            const links = Array.from(bar.querySelectorAll('a[href^="#"]'));
+            const byTarget = new Map();
+            links.forEach(function (a) {
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) byTarget.set(target, a);
+            });
+
+            function setActive(link) {
+                links.forEach(function (a) {
+                    const on = a === link;
+                    a.classList.toggle('active', on);
+                    if (on) a.setAttribute('aria-current', 'true');
+                    else a.removeAttribute('aria-current');
                 });
             }
 
-            window.addEventListener('scroll', onScroll, { passive: true });
-            window.addEventListener('resize', () => {
-                if (isMobile()) setHidden(false);
-            });
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) setActive(byTarget.get(entry.target));
+                    });
+                }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });   // thin band mid-screen
+                byTarget.forEach(function (_, section) { io.observe(section); });
+            }
         })();
     </script>
 </body>
